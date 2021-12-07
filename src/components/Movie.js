@@ -56,11 +56,11 @@ const Movie = (props) => {
     </div>);
 }
 
-const mapStateToProps = (state) => {//step 11
+const mapStateToProps = (state) => {
     return({
         displayFavorites: state.favoritesReducer.displayFavorites,
         movies:state.movieReducer.movies
     });
 }
 
-export default connect(mapStateToProps, {deleteMovie})(Movie);//step 10 connect thatn step 12 pass mapstatetoprops into connect 
+export default connect(mapStateToProps, {deleteMovie})(Movie);
