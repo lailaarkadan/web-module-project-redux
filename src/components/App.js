@@ -1,29 +1,29 @@
 import React from "react";
-
-import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import MovieList from './MovieList';
-import Movie from './Movie';
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import MovieHeader from './MovieHeader';
+import MovieList from './components/MovieList';
+import Movie from './components/Movie';
 
-import AddMovieForm from './AddMovieForm';
-import FavoriteMovieList from './FavoriteMovieList';
+import MovieHeader from './components/MovieHeader';
 
-const App = props => {
-  const displayFavorites = true;
+import AddMovieForm from './components/AddMovieForm';
+import FavoriteMovieList from './components/FavoriteMovieList';
+
+const App = (props) => {
+  const { displayFavorites } = props;
 
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
-        <span className="navbar-brand" >Redux Module Project</span>
+        <span className="navbar-brand" ><img width="40px" alt="" src="./Lambda-Logo-Red.png"/>Redux Module Project</span>
       </nav>
 
       <div className="container">
         <MovieHeader/>
         <div className="row ">
-          {displayFavorites && <FavoriteMovieList/>}
+          {displayFavorites && <FavoriteMovieList />}
         
           <Switch>
             <Route exact path="/movies/add">
@@ -48,4 +48,10 @@ const App = props => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    displayFavorites: state.favoritesReducer.displayFavorites
+  }
+}
+
+export default connect(mapStateToProps)(App);
